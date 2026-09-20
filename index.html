@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cars19 — Premium Car Rental Experience</title>
+  <meta name="description" content="Rent premium cars with flexible terms, transparent pricing, zero hidden charges, and a seamless digital booking experience." />
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Cars19 Stylesheet (10/30/60 Color Rule + Dark Mode + Fluid Animations) -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- Sticky Professional Navbar -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <!-- Brand Wordmark -->
+      <a href="#home" class="brand-logo" onclick="navigateTo('home')">
+        <div class="brand-icon">
+          <i data-lucide="gauge" style="width: 22px; height: 22px;"></i>
+        </div>
+        <div>
+          <span class="logo-cars">Cars</span><span class="logo-19">19</span>
+        </div>
+      </a>
+
+      <!-- Center Desktop Navigation -->
+      <nav class="nav-desktop">
+        <a href="#home" class="nav-link active" data-target="home" onclick="navigateTo('home')">Home</a>
+        <a href="#cars" class="nav-link" data-target="cars" onclick="navigateTo('cars')">Cars</a>
+        <a href="#how-it-works" class="nav-link" data-target="how-it-works" onclick="navigateTo('how-it-works')">How It Works</a>
+        <a href="#about" class="nav-link" data-target="about" onclick="navigateTo('about')">About Us</a>
+        <a href="#contact" class="nav-link" data-target="contact" onclick="navigateTo('contact')">Contact</a>
+      </nav>
+
+      <!-- Right Actions: Dark Mode Toggle + Multi-Account Switcher + CTA -->
+      <div class="header-actions">
+        <!-- Dark Mode Toggle Button -->
+        <button class="theme-toggle-btn" onclick="toggleDarkMode()" title="Toggle Dark / Light Mode" aria-label="Toggle Theme">
+          <i id="theme-toggle-icon" data-lucide="moon" style="width: 19px; height: 19px;"></i>
+        </button>
+
+        <!-- Multiple Account Switcher Area -->
+        <div id="account-switcher-area"></div>
+
+        <button class="btn btn-primary" onclick="navigateTo('cars')">
+          <i data-lucide="calendar" style="width: 18px; height: 18px;"></i>
+          <span>Book a Car</span>
+        </button>
+
+        <button class="hamburger-btn" aria-label="Open Navigation Menu" onclick="toggleMobileNav()">
+          <i data-lucide="menu"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div id="mobile-nav-drawer" class="mobile-nav">
+    <a href="#home" class="mobile-nav-link active" data-target="home" onclick="navigateTo('home')">Home</a>
+    <a href="#cars" class="mobile-nav-link" data-target="cars" onclick="navigateTo('cars')">Cars & Fleet</a>
+    <a href="#how-it-works" class="mobile-nav-link" data-target="how-it-works" onclick="navigateTo('how-it-works')">How It Works</a>
+    <a href="#about" class="mobile-nav-link" data-target="about" onclick="navigateTo('about')">About Us</a>
+    <a href="#contact" class="mobile-nav-link" data-target="contact" onclick="navigateTo('contact')">Contact</a>
+    <a href="#dashboard" class="mobile-nav-link" data-target="dashboard" onclick="navigateTo('dashboard')">My Dashboard</a>
+    <div style="display: flex; gap: 0.75rem; margin-top: 0.5rem;">
+      <button class="btn btn-outline btn-block" onclick="toggleDarkMode()">
+        <i data-lucide="moon" style="width: 16px; height: 16px;"></i> Toggle Theme
+      </button>
+      <button class="btn btn-primary btn-block" onclick="navigateTo('cars')">Book a Car</button>
+    </div>
+  </div>
+
+  <!-- MAIN VIEWPORT CONTAINER -->
+  <main id="main-content">
+
+    <!-- =========================================================================
+         VIEW 1: HOME PAGE
+         ========================================================================= -->
+    <div id="view-home" class="page-view">
+
+      <!-- Hero Section with Animated Ambient Glows & Float Effects -->
+      <section class="hero-section">
+        <div class="hero-glow-1"></div>
+        <div class="hero-glow-2"></div>
+        <div class="container">
+          <div class="hero-grid">
+            <div class="hero-content">
+              <div class="hero-pill">
+                <i data-lucide="award" style="width: 16px; height: 16px;"></i> Premium Fleet & Transparent Pricing
+              </div>
+              <h1 class="hero-title">
+                Rent Your Perfect Car. <br /><span class="highlight-orange">Drive Your Way.</span>
+              </h1>
+              <p class="hero-subtitle">
+                Premium cars, flexible rentals, transparent pricing, and a seamless booking experience — all in one place.
+              </p>
+              <div class="hero-actions">
+                <button class="btn btn-primary btn-lg" onclick="navigateTo('cars')">
+                  Browse Cars <i data-lucide="arrow-right"></i>
+                </button>
+                <button class="btn btn-outline btn-lg" onclick="navigateTo('how-it-works')">
+                  How It Works
+                </button>
+              </div>
+            </div>
+
+            <!-- Hero Visual with floating micro-animation -->
+            <div class="hero-visual">
+              <div class="hero-image-wrapper">
+                <img src="images/bmw_3_series.jpg" alt="Cars19 Luxury Sports & Executive Fleet" />
+                <div class="hero-car-overlay-badge">
+                  <span>Starting at ₹1,699/day</span> • Verified Clean & Sanitized
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Floating Booking / Search Card Overlapping Hero -->
+      <div class="container search-card-container">
+        <div class="search-card">
+          <div class="search-card-header">
+            <div class="search-card-title">
+              <i data-lucide="sparkles" style="color: var(--orange-accent); width: 20px; height: 20px;"></i>
+              <span>Find & Book Your Ride</span>
+            </div>
+            <span class="search-card-badge">Instant Verification • Zero Security Headaches</span>
+          </div>
+
+          <form onsubmit="handleHeroSearch(event)">
+            <div class="search-form-grid">
+              <div class="form-group">
+                <label><i data-lucide="map-pin"></i> Pick-up Location</label>
+                <div class="input-with-icon">
+                  <i data-lucide="navigation" class="input-icon"></i>
+                  <select id="hero-loc" class="form-control" required></select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label><i data-lucide="calendar"></i> Pick-up Date</label>
+                <div class="input-with-icon">
+                  <i data-lucide="calendar" class="input-icon"></i>
+                  <input type="date" id="hero-pickup-date" class="form-control" required />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label><i data-lucide="calendar-check"></i> Return Date</label>
+                <div class="input-with-icon">
+                  <i data-lucide="calendar-check" class="input-icon"></i>
+                  <input type="date" id="hero-return-date" class="form-control" required />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label><i data-lucide="layers"></i> Car Type</label>
+                <div class="input-with-icon">
+                  <i data-lucide="car" class="input-icon"></i>
+                  <select id="hero-category" class="form-control">
+                    <option value="all">All Vehicle Types</option>
+                    <option value="Luxury Sedan">Luxury Sedan</option>
+                    <option value="Premium Sedan">Premium Sedan</option>
+                    <option value="SUV">SUV & Off-Roader</option>
+                    <option value="Compact SUV">Compact SUV</option>
+                    <option value="Compact Hatchback">Economical Hatchback</option>
+                  </select>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="height: 48px; padding: 0 1.75rem;">
+                <i data-lucide="search" style="width: 18px; height: 18px;"></i> Search Cars
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Compact Trust Indicators Section -->
+      <section class="trust-section">
+        <div class="container">
+          <div class="trust-grid">
+            <div class="trust-item">
+              <div class="trust-icon-box">
+                <i data-lucide="car"></i>
+              </div>
+              <div>
+                <div class="trust-title">500+ Cars Available</div>
+                <div class="trust-sub">Premium sedans to rugged 4x4s</div>
+              </div>
+            </div>
+
+            <div class="trust-item">
+              <div class="trust-icon-box">
+                <i data-lucide="smile"></i>
+              </div>
+              <div>
+                <div class="trust-title">10,000+ Happy Customers</div>
+                <div class="trust-sub">4.9/5 Average verified rating</div>
+              </div>
+            </div>
+
+            <div class="trust-item">
+              <div class="trust-icon-box">
+                <i data-lucide="headphones"></i>
+              </div>
+              <div>
+                <div class="trust-title">24/7 Customer Support</div>
+                <div class="trust-sub">Real human road assistance</div>
+              </div>
+            </div>
+
+            <div class="trust-item">
+              <div class="trust-icon-box">
+                <i data-lucide="clock"></i>
+              </div>
+              <div>
+                <div class="trust-title">Flexible Rental Options</div>
+                <div class="trust-sub">Daily, weekly, or monthly plans</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Popular Cars Section with Exact Matched Vehicle Photography -->
+      <section class="container" style="padding: 5.5rem 1.5rem;">
+        <div class="section-header">
+          <span class="section-pill">Handpicked Fleet</span>
+          <h2 class="section-title">Explore Our Popular Cars</h2>
+          <p class="section-subtitle">Choose from an authentic collection of reliable and stylish vehicles for every journey.</p>
+        </div>
+
+        <div id="popular-cars-grid" class="cars-grid">
+          <!-- Populated by JavaScript with genuine original car pictures -->
+        </div>
+
+        <div style="text-align: center; margin-top: 3.5rem;">
+          <button class="btn btn-navy btn-lg" onclick="navigateTo('cars')">
+            View All Vehicles in Fleet <i data-lucide="arrow-right"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- How It Works Section -->
+      <section class="how-it-works-section">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-pill">Simple 4-Step Process</span>
+            <h2 class="section-title">Renting a Car Is Easy</h2>
+            <p class="section-subtitle">Experience our completely frictionless rental procedure designed for modern travelers.</p>
+          </div>
+
+          <div class="steps-grid">
+            <div class="step-card">
+              <div class="step-num-badge">01</div>
+              <h3 class="step-title">Choose Your Car</h3>
+              <p class="step-desc">Browse our collection and select the vehicle that fits your trip, style, and passenger needs.</p>
+            </div>
+
+            <div class="step-card">
+              <div class="step-num-badge">02</div>
+              <h3 class="step-title">Select Your Dates</h3>
+              <p class="step-desc">Choose your pick-up and return dates, along with convenient airport or doorstep hub delivery.</p>
+            </div>
+
+            <div class="step-card">
+              <div class="step-num-badge">03</div>
+              <h3 class="step-title">Complete Your Booking</h3>
+              <p class="step-desc">Enter your details, upload driving credentials, and confirm your reservation with transparent pricing.</p>
+            </div>
+
+            <div class="step-card">
+              <div class="step-num-badge">04</div>
+              <h3 class="step-title">Hit the Road</h3>
+              <p class="step-desc">Pick up your car, receive your digital key confirmation, and enjoy your open journey with full peace of mind.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Why Choose Cars19 Section -->
+      <section class="why-us-section">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-pill">The Cars19 Advantage</span>
+            <h2 class="section-title">Why Thousands Choose Cars19</h2>
+            <p class="section-subtitle">We engineered every touchpoint to eliminate traditional car rental friction.</p>
+          </div>
+
+          <div class="features-grid">
+            <div class="feature-box">
+              <div class="feature-icon-wrapper">
+                <i data-lucide="car"></i>
+              </div>
+              <h3 class="feature-title">Wide Selection of Cars</h3>
+              <p class="feature-desc">From executive luxury sedans like BMW & Mercedes to go-anywhere SUVs like Fortuner and Thar.</p>
+            </div>
+
+            <div class="feature-box">
+              <div class="feature-icon-wrapper">
+                <i data-lucide="receipt"></i>
+              </div>
+              <h3 class="feature-title">Transparent Pricing</h3>
+              <p class="feature-desc">What you see is what you pay. Zero surprise surcharges, clear GST breakdowns, and swift deposit returns.</p>
+            </div>
+
+            <div class="feature-box">
+              <div class="feature-icon-wrapper">
+                <i data-lucide="smartphone"></i>
+              </div>
+              <h3 class="feature-title">Easy Online Booking</h3>
+              <p class="feature-desc">Complete end-to-end digital reservations in under two minutes with instant confirmation receipts.</p>
+            </div>
+
+            <div class="feature-box">
+              <div class="feature-icon-wrapper">
+                <i data-lucide="shield-check"></i>
+              </div>
+              <h3 class="feature-title">Well-Maintained Vehicles</h3>
+              <p class="feature-desc">Every vehicle undergoes rigorous 40-point mechanical inspection and complete interior sanitization before delivery.</p>
+            </div>
+
+            <div class="feature-box">
+              <div class="feature-icon-wrapper">
+                <i data-lucide="sliders"></i>
+              </div>
+              <h3 class="feature-title">Flexible Rental Plans</h3>
+              <p class="feature-desc">Adaptable plans for daily city hops, long weekend getaways, or monthly corporate assignments.</p>
+            </div>
+
+            <div class="feature-box">
+              <div class="feature-icon-wrapper">
+                <i data-lucide="life-buoy"></i>
+              </div>
+              <h3 class="feature-title">24/7 Customer Support</h3>
+              <p class="feature-desc">Round-the-clock roadside assistance, on-call mechanical backup, and live support across major cities.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section class="about-section">
+        <div class="container">
+          <div class="about-grid">
+            <div class="about-content">
+              <span class="section-pill">Our Heritage</span>
+              <h2>Your Journey Starts With Cars19</h2>
+              <p>
+                At Cars19, we believe renting a car should be simple, transparent, and stress-free. Our goal is to connect customers with reliable vehicles at competitive prices while delivering a smooth digital booking experience from start to finish.
+              </p>
+              <ul class="about-checklist">
+                <li><i data-lucide="check-circle-2"></i> Verified single-owner vehicle condition guarantees</li>
+                <li><i data-lucide="check-circle-2"></i> Guaranteed make and model match — never forced substitutions</li>
+                <li><i data-lucide="check-circle-2"></i> Doorstep and airport concierge terminal delivery options</li>
+              </ul>
+              <button class="btn btn-primary" onclick="navigateTo('about')">Learn More About Us</button>
+            </div>
+
+            <div class="about-image-wrapper">
+              <img src="images/toyota_fortuner_1.jpg" alt="Toyota Fortuner Premium SUV Handover" />
+              <div class="about-stat-overlay">
+                <div class="about-stat-number">99.4%</div>
+                <div class="about-stat-label">On-time vehicle handover rate</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Customer Testimonials Section -->
+      <section class="testimonials-section">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-pill">Real Experiences</span>
+            <h2 class="section-title">What Our Customers Say</h2>
+            <p class="section-subtitle">Discover how travelers and professionals experience effortless mobility with Cars19.</p>
+          </div>
+
+          <div id="testimonials-container" class="testimonials-grid">
+            <!-- Injected by JavaScript -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Full-Width Dark Navy Promotional CTA -->
+      <section class="promo-cta-section">
+        <div class="container">
+          <div class="promo-cta-box">
+            <div class="promo-cta-content">
+              <h2>Ready to Hit the Road?</h2>
+              <p>Find your perfect car and start your journey today with transparent rates and guaranteed vehicle quality.</p>
+            </div>
+            <div>
+              <button class="btn btn-primary btn-lg" onclick="navigateTo('cars')">
+                Browse Cars <i data-lucide="arrow-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Frequently Asked Questions Section -->
+      <section class="faq-section">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-pill">Clear Answers</span>
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-subtitle">Everything you need to know about renting with Cars19.</p>
+          </div>
+
+          <div id="faq-accordion-container" class="faq-accordion">
+            <!-- Injected by JavaScript -->
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- =========================================================================
+         VIEW 2: DEDICATED CARS FLEET LISTING PAGE
+         ========================================================================= -->
+    <div id="view-cars" class="page-view" style="display: none;">
+      <div class="page-hero">
+        <div class="container">
+          <span class="section-pill">Complete Fleet Catalog</span>
+          <h1 class="section-title">Find Your Perfect Ride</h1>
+          <p class="section-subtitle">Explore our diverse fleet of premium sedans, executive limousines, compact city cars, and rugged 4x4 SUVs.</p>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="fleet-layout">
+
+          <!-- Left Filter Sidebar -->
+          <aside class="filter-sidebar">
+            <div class="filter-sidebar-header">
+              <span class="filter-sidebar-title">Filters</span>
+              <button class="filter-reset-btn" onclick="resetFleetFilters()">Reset All</button>
+            </div>
+
+            <!-- Search Query -->
+            <div class="filter-group">
+              <label class="filter-group-title">Search Vehicle</label>
+              <div class="input-with-icon">
+                <i data-lucide="search" class="input-icon"></i>
+                <input type="text" id="fleet-search-input" class="form-control" placeholder="Search by model or brand..." oninput="applyFleetFilters()" />
+              </div>
+            </div>
+
+            <!-- Vehicle Category -->
+            <div class="filter-group">
+              <label class="filter-group-title">Vehicle Category</label>
+              <select id="fleet-category-filter" class="form-control" onchange="applyFleetFilters()">
+                <option value="all">All Categories</option>
+                <option value="Luxury Sedan">Luxury Sedan</option>
+                <option value="Premium Sedan">Premium Sedan</option>
+                <option value="SUV">SUV</option>
+                <option value="Compact SUV">Compact SUV</option>
+                <option value="Compact Hatchback">Compact Hatchback</option>
+              </select>
+            </div>
+
+            <!-- Price Range Slider -->
+            <div class="filter-group">
+              <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem;">
+                <label class="filter-group-title" style="margin-bottom: 0;">Max Daily Rate</label>
+                <span id="price-range-val" style="font-weight: 800; color: var(--orange-accent); font-size: 0.95rem;">₹10,000</span>
+              </div>
+              <input type="range" id="fleet-price-range" min="1500" max="10000" step="500" value="10000" style="width: 100%; accent-color: var(--orange-accent); cursor: pointer;" />
+              <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">
+                <span>₹1,500</span>
+                <span>₹10,000</span>
+              </div>
+            </div>
+
+            <!-- Transmission Filter -->
+            <div class="filter-group">
+              <label class="filter-group-title">Transmission</label>
+              <select id="fleet-transmission-filter" class="form-control" onchange="applyFleetFilters()">
+                <option value="all">All Transmissions</option>
+                <option value="Automatic">Automatic Only</option>
+                <option value="Manual">Manual Only</option>
+              </select>
+            </div>
+
+            <!-- Fuel Type Filter -->
+            <div class="filter-group">
+              <label class="filter-group-title">Fuel Type</label>
+              <select id="fleet-fuel-filter" class="form-control" onchange="applyFleetFilters()">
+                <option value="all">All Fuel Types</option>
+                <option value="Petrol">Petrol</option>
+                <option value="Diesel">Diesel</option>
+              </select>
+            </div>
+
+            <!-- Seating Capacity Filter -->
+            <div class="filter-group">
+              <label class="filter-group-title">Seating Capacity</label>
+              <select id="fleet-seats-filter" class="form-control" onchange="applyFleetFilters()">
+                <option value="all">Any Capacity</option>
+                <option value="4">4 Seats</option>
+                <option value="5">5 Seats</option>
+                <option value="7">7 Seats</option>
+              </select>
+            </div>
+          </aside>
+
+          <!-- Right Vehicles Grid & Sort Toolbar -->
+          <div class="fleet-main-area">
+            <div class="fleet-toolbar">
+              <div class="fleet-count">
+                Available Cars: <span id="fleet-count-display">0</span>
+              </div>
+
+              <div class="fleet-sort">
+                <label for="fleet-sort-select" style="font-size: 0.85rem; font-weight: 600; color: var(--navy-dark);">Sort by:</label>
+                <select id="fleet-sort-select" onchange="applyFleetFilters()">
+                  <option value="recommended">Recommended</option>
+                  <option value="price-asc">Price: Low to High</option>
+                  <option value="price-desc">Price: High to Low</option>
+                  <option value="popularity">Popularity / Reviews</option>
+                </select>
+              </div>
+            </div>
+
+            <div id="fleet-cars-grid" class="cars-grid">
+              <!-- Populated via applyFleetFilters() -->
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================================================================
+         VIEW 3: MULTI-STEP BOOKING FLOW WIZARD
+         ========================================================================= -->
+    <div id="view-booking" class="page-view" style="display: none;">
+      <div class="page-hero">
+        <div class="container">
+          <span class="section-pill">Online Reservation</span>
+          <h1 class="section-title">Complete Your Car Reservation</h1>
+          <p class="section-subtitle">Secure, fast, and transparent 5-step rental checkout process.</p>
+        </div>
+      </div>
+
+      <div class="container booking-wizard-section">
+        <!-- Progress Stepper -->
+        <div class="wizard-progress-bar">
+          <div class="wizard-progress-fill" id="wizard-fill"></div>
+
+          <div class="wizard-step-node active" id="step-node-1">
+            <div class="node-circle">1</div>
+            <span class="node-label">Choose Car</span>
+          </div>
+
+          <div class="wizard-step-node" id="step-node-2">
+            <div class="node-circle">2</div>
+            <span class="node-label">Rental Details</span>
+          </div>
+
+          <div class="wizard-step-node" id="step-node-3">
+            <div class="node-circle">3</div>
+            <span class="node-label">Customer Info</span>
+          </div>
+
+          <div class="wizard-step-node" id="step-node-4">
+            <div class="node-circle">4</div>
+            <span class="node-label">Payment</span>
+          </div>
+
+          <div class="wizard-step-node" id="step-node-5">
+            <div class="node-circle">5</div>
+            <span class="node-label">Confirmation</span>
+          </div>
+        </div>
+
+        <div class="wizard-grid">
+          <!-- Step Form Container -->
+          <div id="wizard-content-area"></div>
+
+          <!-- Sticky Summary Sidebar -->
+          <div id="wizard-summary-area"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================================================================
+         VIEW 4: USER DASHBOARD
+         ========================================================================= -->
+    <div id="view-dashboard" class="page-view" style="display: none;">
+      <div class="container dashboard-section">
+        <div class="dashboard-header">
+          <div class="user-welcome">
+            <h1>Welcome back, Rahul!</h1>
+            <p>Manage your upcoming rental reservations, history, and saved vehicles.</p>
+          </div>
+          <div style="display: flex; gap: 0.75rem;">
+            <button class="btn btn-outline" onclick="openAuthModal()">
+              <i data-lucide="user-plus"></i> Add Another Account
+            </button>
+            <button class="btn btn-primary" onclick="navigateTo('cars')">
+              <i data-lucide="plus"></i> New Reservation
+            </button>
+          </div>
+        </div>
+
+        <div id="dashboard-content-area">
+          <!-- Injected by renderDashboard() -->
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================================================================
+         VIEW 5: HOW IT WORKS PAGE
+         ========================================================================= -->
+    <div id="view-how-it-works" class="page-view" style="display: none;">
+      <div class="page-hero">
+        <div class="container">
+          <span class="section-pill">Transparent Protocol</span>
+          <h1 class="section-title">How Cars19 Works</h1>
+          <p class="section-subtitle">We have rethought the entire rental lifecycle from your smartphone to the highway.</p>
+        </div>
+      </div>
+
+      <div class="container" style="padding: 4rem 1.5rem 6rem 1.5rem;">
+        <div class="steps-grid" style="margin-bottom: 4rem;">
+          <div class="step-card">
+            <div class="step-num-badge">01</div>
+            <h3 class="step-title">Choose Your Car</h3>
+            <p class="step-desc">Select from our 500+ premium fleet. Filter by segment, transmission, seating, or daily budget.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num-badge">02</div>
+            <h3 class="step-title">Select Your Dates</h3>
+            <p class="step-desc">Pick precise drop-off and return times. Doorstep delivery or airport express pickup available.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num-badge">03</div>
+            <h3 class="step-title">Complete Your Booking</h3>
+            <p class="step-desc">Quick 2-minute digital verification with your driver license and instant transparent invoice.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num-badge">04</div>
+            <h3 class="step-title">Hit the Road</h3>
+            <p class="step-desc">Collect your spotless vehicle, verify odometer readings with our representative, and enjoy unlimited journey comfort.</p>
+          </div>
+        </div>
+
+        <div class="promo-cta-box" style="margin-top: 3rem;">
+          <div class="promo-cta-content">
+            <h2>Experience Seamless Mobility Today</h2>
+            <p>Join over 10,000 satisfied professionals and road-trippers across India.</p>
+          </div>
+          <button class="btn btn-primary btn-lg" onclick="navigateTo('cars')">Explore Fleet Now</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================================================================
+         VIEW 6: ABOUT US PAGE
+         ========================================================================= -->
+    <div id="view-about" class="page-view" style="display: none;">
+      <div class="page-hero">
+        <div class="container">
+          <span class="section-pill">Our Mission</span>
+          <h1 class="section-title">About Cars19</h1>
+          <p class="section-subtitle">Driving trust, speed, and premium experiences in self-drive automobile mobility.</p>
+        </div>
+      </div>
+
+      <div class="container" style="padding: 4rem 1.5rem 6rem 1.5rem;">
+        <div class="about-grid" style="margin-bottom: 5rem;">
+          <div class="about-content">
+            <span class="section-pill">Who We Are</span>
+            <h2>Your Journey Starts With Cars19</h2>
+            <p>
+              At Cars19, we believe renting a car should be simple, transparent, and stress-free. Our goal is to connect customers with reliable vehicles at competitive prices while delivering a smooth digital booking experience from start to finish.
+            </p>
+            <p>
+              Founded with the objective of eliminating bait-and-switch vehicle models, confusing security deductions, and aging car inventories, Cars19 maintains only top-spec, manufacturer-maintained vehicles backed by 24/7 technical roadside support.
+            </p>
+            <div style="display: flex; gap: 2rem; margin-top: 1.5rem;">
+              <div>
+                <div style="font-size: 2rem; font-weight: 800; color: var(--navy-dark);">8+</div>
+                <div style="color: var(--text-muted); font-size: 0.85rem;">Major City Hubs</div>
+              </div>
+              <div>
+                <div style="font-size: 2rem; font-weight: 800; color: var(--navy-dark);">500+</div>
+                <div style="color: var(--text-muted); font-size: 0.85rem;">Premium Cars</div>
+              </div>
+              <div>
+                <div style="font-size: 2rem; font-weight: 800; color: var(--navy-dark);">99.4%</div>
+                <div style="color: var(--text-muted); font-size: 0.85rem;">Punctuality Record</div>
+              </div>
+            </div>
+          </div>
+          <div class="about-image-wrapper">
+            <img src="images/mercedes_c_class.jpg" alt="Cars19 Executive Fleet" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================================================================
+         VIEW 7: CONTACT US PAGE
+         ========================================================================= -->
+    <div id="view-contact" class="page-view" style="display: none;">
+      <div class="page-hero">
+        <div class="container">
+          <span class="section-pill">Get in Touch</span>
+          <h1 class="section-title">Contact Cars19 Support</h1>
+          <p class="section-subtitle">Our dedicated car concierge team is available 24 hours a day, 7 days a week.</p>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="contact-grid">
+          <!-- Form -->
+          <div class="contact-card">
+            <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--navy-dark); margin-bottom: 0.5rem;">Send Us a Message</h2>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">Fill out the form below and an automotive specialist will respond promptly.</p>
+
+            <form id="contact-form" onsubmit="handleContactSubmit(event)">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem;">
+                <div class="form-group">
+                  <label>Full Name *</label>
+                  <input type="text" id="contact-name" class="form-control" placeholder="e.g. Rahul Sharma" required />
+                </div>
+                <div class="form-group">
+                  <label>Email Address *</label>
+                  <input type="email" class="form-control" placeholder="e.g. rahul@example.com" required />
+                </div>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem;">
+                <div class="form-group">
+                  <label>Phone Number</label>
+                  <input type="tel" class="form-control" placeholder="+91 98765 43210" />
+                </div>
+                <div class="form-group">
+                  <label>Subject</label>
+                  <input type="text" class="form-control" placeholder="Booking inquiry or corporate request" />
+                </div>
+              </div>
+
+              <div class="form-group" style="margin-bottom: 1.5rem;">
+                <label>Message *</label>
+                <textarea class="form-control" rows="5" style="height: auto; padding: 0.9rem;" placeholder="How can our team help you with your upcoming journey?" required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-lg">Send Message <i data-lucide="send"></i></button>
+            </form>
+          </div>
+
+          <!-- Info & Map -->
+          <div class="contact-info-panel">
+            <div class="contact-info-card">
+              <div class="contact-icon-box">
+                <i data-lucide="phone-call"></i>
+              </div>
+              <div>
+                <div style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">24/7 Phone Support</div>
+                <div style="font-size: 1.15rem; font-weight: 800; color: var(--navy-dark); margin-top: 0.2rem;">+91 1800 190 2026</div>
+                <div style="font-size: 0.85rem; color: var(--text-muted);">Toll-free dedicated assistance</div>
+              </div>
+            </div>
+
+            <div class="contact-info-card">
+              <div class="contact-icon-box">
+                <i data-lucide="mail"></i>
+              </div>
+              <div>
+                <div style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Email Inquiries</div>
+                <div style="font-size: 1.15rem; font-weight: 800; color: var(--navy-dark); margin-top: 0.2rem;">support@cars19.com</div>
+                <div style="font-size: 0.85rem; color: var(--text-muted);">Avg response time: 30 minutes</div>
+              </div>
+            </div>
+
+            <div class="contact-info-card">
+              <div class="contact-icon-box">
+                <i data-lucide="map-pin"></i>
+              </div>
+              <div>
+                <div style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Corporate Headquarters</div>
+                <div style="font-size: 1.05rem; font-weight: 800; color: var(--navy-dark); margin-top: 0.2rem;">Cars19 Towers, Aerocity Sector 21</div>
+                <div style="font-size: 0.85rem; color: var(--text-muted);">New Delhi, 110037, India</div>
+              </div>
+            </div>
+
+            <!-- Simulated Map -->
+            <div class="mock-map">
+              <div class="mock-map-pin">
+                <i data-lucide="map-pin" style="color: var(--orange-accent);"></i> Cars19 Central Terminal Hub
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- =========================================================================
+       CAR DETAILS MODAL
+       ========================================================================= -->
+  <div id="car-details-modal" class="modal-overlay" onclick="if (event.target === this) closeCarDetailsModal();">
+    <div class="modal-box">
+      <button class="modal-close-btn" onclick="closeCarDetailsModal()" title="Close details">
+        <i data-lucide="x"></i>
+      </button>
+      <div id="car-details-body">
+        <!-- Rendered dynamically by openCarDetailsModal() -->
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MULTIPLE ACCOUNT ADD / LOGIN MODAL
+       ========================================================================= -->
+  <div id="auth-modal" class="modal-overlay" onclick="if (event.target === this) closeAuthModal();">
+    <div class="modal-box" style="max-width: 480px; padding: 2.25rem;">
+      <button class="modal-close-btn" onclick="closeAuthModal()">
+        <i data-lucide="x"></i>
+      </button>
+      <div style="text-align: center; margin-bottom: 1.5rem;">
+        <div class="brand-logo" style="margin-bottom: 0.5rem;">
+          <span class="logo-cars">Cars</span><span class="logo-19">19</span>
+        </div>
+        <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--navy-dark);">Add / Register Account</h3>
+        <p style="font-size: 0.88rem; color: var(--text-muted);">Add another driver profile or corporate entity</p>
+      </div>
+
+      <form onsubmit="addNewAccount(event)">
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label>Full Name *</label>
+          <input type="text" id="new-acc-name" class="form-control" placeholder="e.g. Vikram Singhania" required />
+        </div>
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label>Email Address *</label>
+          <input type="email" id="new-acc-email" class="form-control" placeholder="e.g. vikram@enterprise.com" required />
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1rem;">
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" id="new-acc-phone" class="form-control" placeholder="+91 98111 22233" />
+          </div>
+          <div class="form-group">
+            <label>Account Type</label>
+            <select id="new-acc-badge" class="form-control">
+              <option value="Personal">Personal Driver</option>
+              <option value="Business Corporate">Business Corporate</option>
+              <option value="Explorer Pro">Explorer Pro</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group" style="margin-bottom: 1.5rem;">
+          <label>Driving License Number *</label>
+          <input type="text" id="new-acc-license" class="form-control" placeholder="e.g. DL-0420210088921" required />
+        </div>
+        <button type="submit" class="btn btn-primary btn-block btn-lg">Add & Switch to Account</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- =========================================================================
+       DARK NAVY FOOTER (30% Accent rule)
+       ========================================================================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Col 1: Brand & Tagline -->
+        <div class="footer-about">
+          <div class="brand-logo dark-mode">
+            <div class="brand-icon">
+              <i data-lucide="gauge" style="width: 22px; height: 22px;"></i>
+            </div>
+            <div>
+              <span class="logo-cars">Cars</span><span class="logo-19">19</span>
+            </div>
+          </div>
+          <p>
+            Your trusted partner for easy and reliable car rentals. We connect travelers and businesses with high-grade self-drive automobiles across major Indian metropolises.
+          </p>
+          <div class="footer-socials">
+            <a href="#" class="social-icon-btn" aria-label="Twitter"><i data-lucide="twitter"></i></a>
+            <a href="#" class="social-icon-btn" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+            <a href="#" class="social-icon-btn" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+            <a href="#" class="social-icon-btn" aria-label="YouTube"><i data-lucide="youtube"></i></a>
+          </div>
+        </div>
+
+        <!-- Col 2: Quick Links -->
+        <div>
+          <h4 class="footer-title">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#home" onclick="navigateTo('home')">Home</a></li>
+            <li><a href="#cars" onclick="navigateTo('cars')">Cars & Fleet</a></li>
+            <li><a href="#about" onclick="navigateTo('about')">About Us</a></li>
+            <li><a href="#how-it-works" onclick="navigateTo('how-it-works')">How It Works</a></li>
+            <li><a href="#dashboard" onclick="navigateTo('dashboard')">User Dashboard</a></li>
+            <li><a href="#contact" onclick="navigateTo('contact')">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Support & Legal -->
+        <div>
+          <h4 class="footer-title">Support & Legal</h4>
+          <ul class="footer-links">
+            <li><a href="#home" onclick="navigateTo('home')">Help Center</a></li>
+            <li><a href="#home" onclick="navigateTo('home')">FAQs</a></li>
+            <li><a href="#home" onclick="navigateTo('home')">Cancellation Policy</a></li>
+            <li><a href="#home" onclick="navigateTo('home')">Terms & Conditions</a></li>
+            <li><a href="#home" onclick="navigateTo('home')">Privacy Policy</a></li>
+            <li><a href="#home" onclick="navigateTo('home')">Insurance Coverage</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Contact -->
+        <div>
+          <h4 class="footer-title">Contact</h4>
+          <div class="footer-contact-list">
+            <div class="footer-contact-row">
+              <i data-lucide="phone"></i>
+              <div>
+                <strong>+91 1800 190 2026</strong><br />
+                24/7 Roadside Concierge
+              </div>
+            </div>
+            <div class="footer-contact-row">
+              <i data-lucide="mail"></i>
+              <div>support@cars19.com</div>
+            </div>
+            <div class="footer-contact-row">
+              <i data-lucide="map-pin"></i>
+              <div>Cars19 Towers, Aerocity Hub, New Delhi 110037</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom">
+        <div>© 2026 Cars19. All rights reserved.</div>
+        <div style="display: flex; gap: 1.5rem;">
+          <span>ISO 9001:2026 Certified Fleet</span>
+          <span>Transparent Pricing Promise</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

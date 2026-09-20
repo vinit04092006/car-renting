@@ -1,0 +1,26 @@
+$queryMap = @{
+  "bmw_3_series" = "BMW_3_Series"
+  "mercedes_c_class" = "Mercedes-Benz_C-Class"
+  "tata_nexon" = "Tata_Nexon"
+  "mahindra_thar" = "Mahindra_Thar"
+  "maruti_baleno" = "Suzuki_Baleno"
+}
+
+$destDir = "C:\Users\hp\.gemini\antigravity\scratch\cars19\images"
+
+foreach ($name in $queryMap.Keys) {
+  $title = $queryMap[$name]
+  $apiUrl = "https://en.wikipedia.org/w/api.php?action=query&titles=$title&prop=pageimages&format=json&pithumbsize=1000"
+  $resp = Invoke-RestMethod -Uri $apiUrl -UserAgent "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+  $p = $resp.query.pages.PSObject.Properties | Select-Object -First 1 -ExpandProperty Value
+  if ($p.thumbnail) {
+    $src = $p.thumbnail.source
+    $target = "$destDir\$name.jpg"
+    Invoke-WebRequest -Uri $src -OutFile $target -UserAgent "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+    $len = (Get-Item $target).Length
+    Write-Output "Downloaded $name from Wikipedia API -> $len bytes"
+  } else {
+    Write-Output "No thumb for $title"
+  }
+}
+
