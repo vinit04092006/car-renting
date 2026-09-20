@@ -19,7 +19,7 @@ $cars = @{
   "maruti_baleno_2" = "https://upload.wikimedia.org/wikipedia/commons/7/7b/Suzuki_Baleno_%282016%29_front_20160731.jpg"
 }
 
-$destDir = "C:\Users\hp\.gemini\antigravity\scratch\cars19\images"
+$destDir = Join-Path $PSScriptRoot "images"
 if (!(Test-Path $destDir)) { New-Item -ItemType Directory -Force -Path $destDir }
 
 foreach ($k in $cars.Keys) {
