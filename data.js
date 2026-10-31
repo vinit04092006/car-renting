@@ -238,9 +238,9 @@ const CARS_DATABASE = [
 // Seeded Accounts for Instant Multiple Account Switching & Support
 const INITIAL_ACCOUNTS = [
   {
-    id: "acc-rahul",
-    name: "Rahul Sharma",
-    email: "rahul.sharma@example.com",
+    id: "acc-vinit",
+    name: "Vinit Tandel",
+    email: "vinittandel86@gmail.com",
     role: "Individual Driver",
     badge: "Personal",
     phone: "+91 98765 43210",
@@ -266,8 +266,8 @@ const INITIAL_ACCOUNTS = [
         taxes: 3239,
         totalPrice: 21236,
         status: "Confirmed",
-        customerName: "Rahul Sharma",
-        customerEmail: "rahul.sharma@example.com",
+        customerName: "Vinit Tandel",
+        customerEmail: "vinittandel86@gmail.com",
         customerPhone: "+91 98765 43210",
         licenseNumber: "DL-1420180092144"
       },
@@ -289,8 +289,8 @@ const INITIAL_ACCOUNTS = [
         taxes: 3599,
         totalPrice: 23595,
         status: "Completed",
-        customerName: "Rahul Sharma",
-        customerEmail: "rahul.sharma@example.com",
+        customerName: "Vinit Tandel ",
+        customerEmail: "vinittandel86@gmail.com",
         customerPhone: "+91 98765 43210",
         licenseNumber: "DL-1420180092144"
       }
@@ -383,7 +383,7 @@ const LOCATIONS = [
 
 const TESTIMONIALS = [
   {
-    name: "Rahul Sharma",
+    name: "Vinit Tandel ",
     role: "Senior Product Director",
     avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
     rating: 5,
