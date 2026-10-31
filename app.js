@@ -5,7 +5,7 @@ const appState = {
   activeView: "home",
   darkMode: false,
   accounts: [...INITIAL_ACCOUNTS],
-  currentAccountId: "acc-rahul",
+  currentAccountId: "acc-vinit",
   user: { ...INITIAL_ACCOUNTS[0] },
   favorites: [...INITIAL_ACCOUNTS[0].favorites],
   bookings: [...INITIAL_ACCOUNTS[0].bookings],
@@ -780,11 +780,11 @@ function renderBookingStep(step) {
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;">
             <div class="form-group">
               <label><i data-lucide="user"></i> Full Name (as per Govt ID) *</label>
-              <input type="text" id="cust-name" class="form-control" placeholder="e.g. Rahul Sharma" value="${custName}" required />
+              <input type="text" id="cust-name" class="form-control" placeholder="e.g. Vinit Tandel" value="${custName}" required />
             </div>
             <div class="form-group">
               <label><i data-lucide="mail"></i> Email Address *</label>
-              <input type="email" id="cust-email" class="form-control" placeholder="e.g. rahul.sharma@example.com" value="${custEmail}" required />
+              <input type="email" id="cust-email" class="form-control" placeholder="e.g. vinittandel86@gmail.com" value="${custEmail}" required />
             </div>
           </div>
 
