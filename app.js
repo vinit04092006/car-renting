@@ -118,7 +118,7 @@ function closeAccountDropdown() {
   if (dd) dd.classList.remove("open");
 }
 
-function addNewAccount(e) {
+async function addNewAccount(e) {
   e.preventDefault();
   const name = document.getElementById("new-acc-name")?.value.trim();
   const email = document.getElementById("new-acc-email")?.value.trim();
@@ -143,6 +143,16 @@ function addNewAccount(e) {
     favorites: [],
     bookings: []
   };
+
+  // Sync to Backend if available
+  if (window.API) {
+    try {
+      const serverAcc = await API.registerAccount(newAcc);
+      if (serverAcc) Object.assign(newAcc, serverAcc);
+    } catch (err) {
+      console.warn("Account backend sync fallback:", err);
+    }
+  }
 
   appState.accounts.push(newAcc);
   closeAuthModal();
@@ -963,7 +973,7 @@ function updateWizardDates(pDate, rDate) {
   renderBookingStep(appState.currentBookingStep);
 }
 
-function processConfirmBooking() {
+async function processConfirmBooking() {
   const car = appState.selectedCarForBooking || CARS_DATABASE[0];
   const days = calculateRentalDays(appState.bookingForm.pickupDate, appState.bookingForm.returnDate);
   const baseRate = car.pricePerDay * days;
@@ -995,6 +1005,18 @@ function processConfirmBooking() {
     licenseNumber: appState.bookingForm.licenseNumber || appState.user.license
   };
 
+  // Sync with Backend Server if reachable
+  if (window.API) {
+    try {
+      const serverBooking = await API.createBooking(newBooking);
+      if (serverBooking) {
+        Object.assign(newBooking, serverBooking);
+      }
+    } catch (e) {
+      console.warn("Backend booking sync fallback:", e);
+    }
+  }
+
   appState.bookings.unshift(newBooking);
 
   // Sync to account dataset
@@ -1006,7 +1028,7 @@ function processConfirmBooking() {
   appState.lastConfirmedBooking = newBooking;
   appState.currentBookingStep = 5;
   renderBookingStep(5);
-  showToast(`Booking ${bookingId} successfully confirmed!`);
+  showToast(`Booking ${newBooking.bookingId} successfully confirmed!`);
 }
 
 function printReceipt() {
@@ -1249,9 +1271,21 @@ function closeMobileNav() {
 }
 
 // Contact form submission
-function handleContactSubmit(e) {
+async function handleContactSubmit(e) {
   e.preventDefault();
   const name = document.getElementById("contact-name")?.value;
+  const email = document.getElementById("contact-email")?.value;
+  const phone = document.getElementById("contact-phone")?.value;
+  const message = document.getElementById("contact-msg")?.value;
+
+  if (window.API) {
+    try {
+      await API.submitContact({ name, email, phone, message });
+    } catch (err) {
+      console.warn("Contact submission offline fallback:", err);
+    }
+  }
+
   showToast(`Thank you, ${name}! Your message has been received. Our team will contact you within 2 hours.`);
   document.getElementById("contact-form")?.reset();
 }
@@ -1390,4 +1424,38 @@ document.addEventListener("DOMContentLoaded", () => {
   const hash = window.location.hash.replace("#", "") || "home";
   navigateTo(hash);
   lucide.createIcons();
+
+  // Asynchronously synchronize with Backend API if online
+  if (window.API && API.isOnline) {
+    (async () => {
+      try {
+        const [cars, accounts, bookings] = await Promise.all([
+          API.getCars(),
+          API.getAccounts(),
+          API.getBookings()
+        ]);
+        if (cars && cars.length > 0) {
+          CARS_DATABASE.length = 0;
+          CARS_DATABASE.push(...cars);
+          renderPopularCars();
+          if (appState.activeView === "cars") applyFleetFilters();
+        }
+        if (accounts && accounts.length > 0) {
+          appState.accounts = accounts;
+          updateUserStatusUI();
+        }
+        if (bookings && bookings.length > 0) {
+          const userBookings = bookings.filter(
+            (b) => b.customerEmail.toLowerCase() === appState.user.email.toLowerCase()
+          );
+          if (userBookings.length > 0) {
+            appState.bookings = userBookings;
+            if (appState.activeView === "dashboard") renderDashboard();
+          }
+        }
+      } catch (err) {
+        console.warn("Backend sync background notice:", err);
+      }
+    })();
+  }
 });
